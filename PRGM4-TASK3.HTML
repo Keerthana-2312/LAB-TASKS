@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Password Validation</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .container {
+    background: white;
+    padding: 2rem 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 350px;
+    text-align: center;
+  }
+  input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #007bff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    color: white;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  #message {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  #message.valid {
+    color: green;
+  }
+  #message.invalid {
+    color: red;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Validate Password Field</h2>
+  <input type="password" id="passwordInput" placeholder="Enter your password" />
+  <button onclick="validatePassword()">Validate</button>
+  <div id="message"></div>
+</div>
+
+<script>
+  function validatePassword() {
+    const password = document.getElementById('passwordInput').value;
+    const messageDiv = document.getElementById('message');
+    
+    // Validation criteria
+    const lengthCheck = password.length >= 8;
+    const uppercaseCheck = /[A-Z]/.test(password);
+    const numberCheck = /[0-9]/.test(password);
+
+    if (password === "") {
+      messageDiv.textContent = "Password cannot be empty.";
+      messageDiv.className = "invalid";
+      return;
+    }
+
+    if (!lengthCheck) {
+      messageDiv.textContent = "Password must be at least 8 characters long.";
+      messageDiv.className = "invalid";
+      return;
+    }
+    if (!uppercaseCheck) {
+      messageDiv.textContent = "Password must contain at least one uppercase letter.";
+      messageDiv.className = "invalid";
+      return;
+    }
+    if (!numberCheck) {
+      messageDiv.textContent = "Password must contain at least one number.";
+      messageDiv.className = "invalid";
+      return;
+    }
+
+    messageDiv.textContent = "Password is valid!";
+    messageDiv.className = "valid";
+  }
+</script>
+
+</body>
+</html>

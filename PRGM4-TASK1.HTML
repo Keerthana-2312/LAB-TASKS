@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Name Validation</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f7f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .container {
+    background: white;
+    padding: 2rem 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 350px;
+    text-align: center;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #28a745;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    color: white;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #218838;
+  }
+  #message {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  #message.valid {
+    color: green;
+  }
+  #message.invalid {
+    color: red;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Validate Name Field</h2>
+  <input type="text" id="nameInput" placeholder="Enter your name" />
+  <button onclick="validateName()">Validate</button>
+  <div id="message"></div>
+</div>
+
+<script>
+  function validateName() {
+    const name = document.getElementById('nameInput').value.trim();
+    const messageDiv = document.getElementById('message');
+
+    
+    const validNamePattern = /^[A-Za-z\s]+$/;
+
+    if (name === "") {
+      messageDiv.textContent = "Name cannot be empty.";
+      messageDiv.className = "invalid";
+    } else if (!validNamePattern.test(name)) {
+      messageDiv.textContent = "Name can only contain letters and spaces.";
+      messageDiv.className = "invalid";
+    } else {
+      messageDiv.textContent = `${name} is valid.`;
+      messageDiv.className = "valid";
+    }
+  }
+</script>
+
+</body>
+</html>
