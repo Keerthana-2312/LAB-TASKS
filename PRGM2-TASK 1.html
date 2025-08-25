@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 2rem 3rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        #randomNumber {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            color: #007BFF;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Random Number Generator</h1>
+        <div id="randomNumber">--</div>
+        <button onclick="generateRandomNumber()">Generate Number</button>
+    </div>
+
+    <script>
+        function generateRandomNumber() {
+            
+            const randomNum = Math.floor(Math.random() * 100) + 1;
+            
+            document.getElementById('randomNumber').textContent = randomNum;
+        }
+
+        
+        generateRandomNumber();
+    </script>
+</body>
+</html>

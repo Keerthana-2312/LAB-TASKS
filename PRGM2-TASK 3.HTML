@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guess the Number</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f7f9fc;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+  .container {
+    background: white;
+    padding: 2rem 3rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 320px;
+  }
+  h1 {
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  input[type="number"] {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  #result {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    min-height: 1.5em;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Guess the Number</h1>
+  <input type="number" id="guessInput" placeholder="Enter your guess" />
+  <button onclick="checkGuess()">Submit Guess</button>
+  <div id="result"></div>
+</div>
+
+<script>
+  const targetNumber = 50;
+
+  function checkGuess() {
+    const input = document.getElementById('guessInput');
+    const result = document.getElementById('result');
+    const guess = Number(input.value);
+
+    if (!input.value) {
+      result.textContent = "Please enter a number!";
+      result.style.color = "red";
+      return;
+    }
+
+    if (guess < targetNumber) {
+      result.textContent = "Too Low!";
+      result.style.color = "orange";
+    } else if (guess > targetNumber) {
+      result.textContent = "Too High!";
+      result.style.color = "orange";
+    } else {
+      result.textContent = "Correct!";
+      result.style.color = "green";
+      input.disabled = true;  
+      document.querySelector('button').disabled = true; 
+    }
+    
+    input.value = "";  
+    input.focus();
+  }
+</script>
+
+</body>
+</html>
