@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Count Vowels in a String</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #eef2f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .container {
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 400px;
+    text-align: center;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #007bff;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    color: white;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  #output {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Count Vowels in a String</h2>
+  <input type="text" id="inputString" placeholder="Enter a string here" />
+  <button onclick="countVowels()">Count Vowels</button>
+  <div id="output"></div>
+</div>
+
+<script>
+  function countVowels() {
+    const str = document.getElementById('inputString').value;
+    if (!str) {
+      document.getElementById('output').textContent = "Please enter a string.";
+      return;
+    }
+    
+    const vowels = str.match(/[aeiou]/gi);
+    const count = vowels ? vowels.length : 0;
+    document.getElementById('output').textContent = `Number of vowels: ${count}`;
+  }
+</script>
+
+</body>
+</html>

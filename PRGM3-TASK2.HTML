@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Remove Duplicates from Array</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f7f8;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+  .container {
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    width: 400px;
+    text-align: center;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+  }
+  button {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #1e7e34;
+  }
+  #output {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #222;
+    min-height: 1.5em;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Remove Duplicates from Array</h2>
+  <input type="text" id="arrayInput" placeholder="Enter numbers separated by commas" />
+  <button onclick="removeDuplicates()">Remove Duplicates</button>
+  <div id="output"></div>
+</div>
+
+<script>
+  function removeDuplicates() {
+    const input = document.getElementById('arrayInput').value.trim();
+    if (!input) {
+      document.getElementById('output').textContent = "Please enter some numbers.";
+      return;
+    }
+    
+    const arr = input.split(',').map(item => Number(item.trim())).filter(item => !isNaN(item));
+    if (arr.length === 0) {
+      document.getElementById('output').textContent = "Please enter valid numbers.";
+      return;
+    }
+
+    const uniqueArr = [...new Set(arr)];
+    document.getElementById('output').textContent = "Output: [" + uniqueArr.join(', ') + "]";
+  }
+</script>
+
+</body>
+</html>
