@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Employee Management System</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f9;
+        padding: 20px;
+        font-size: 16px;
+    }
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ccc;
+    }
+    input, select, button {
+        padding: 8px;
+        margin: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    button {
+        cursor: pointer;
+        background-color: #5c9ded;
+        color: white;
+        border: none;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+    table, th, td {
+        border: 1px solid #aaa;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+    .actions button {
+        margin-right: 5px;
+        background-color: #f07c7c;
+    }
+    .actions button.update {
+        background-color: #7cf07c;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Employee Management System</h2>
+    
+    <div>
+        <input type="hidden" id="employeeId">
+        <input type="text" id="name" placeholder="Name">
+        <input type="text" id="position" placeholder="Position">
+        <input type="number" id="salary" placeholder="Salary">
+        <input type="text" id="department" placeholder="Department">
+        <select id="availability">
+            <option value="available">Available</option>
+            <option value="unavailable">Unavailable</option>
+        </select>
+        <button onclick="addOrUpdateEmployee()">Add/Update Employee</button>
+    </div>
+
+    <div style="margin-top: 10px;">
+        <input type="text" id="search" placeholder="Search by name">
+        <button onclick="searchEmployee()">Search</button>
+        <button onclick="sortBySalary(true)">Sort Salary Asc</button>
+        <button onclick="sortBySalary(false)">Sort Salary Desc</button>
+        <button onclick="generateDepartmentReport()">Department Report</button>
+        <button onclick="calculateTotalSalary()">Total Active Salary</button>
+    </div>
+
+    <div id="employeeList"></div>
+    <div id="report"></div>
+</div>
+
+<script>
+let employees = [];
+let currentId = 1;
+
+function displayEmployees(list = employees) {
+    if(list.length === 0){
+        document.getElementById('employeeList').innerHTML = "<p>No employees found.</p>";
+        return;
+    }
+    let html = '<table><tr><th>ID</th><th>Name</th><th>Position</th><th>Salary</th><th>Department</th><th>Availability</th><th>Actions</th></tr>';
+    list.forEach(emp => {
+        html += `<tr>
+            <td>${emp.id}</td>
+            <td>${emp.name}</td>
+            <td>${emp.position}</td>
+            <td>₹${emp.salary}</td>
+            <td>${emp.department}</td>
+            <td>${emp.availability}</td>
+            <td class="actions">
+                <button onclick="editEmployee(${emp.id})" class="update">Edit</button>
+                <button onclick="removeEmployee(${emp.id})">Delete</button>
+                <button onclick="toggleAvailability(${emp.id})">Toggle Availability</button>
+            </td>
+        </tr>`;
+    });
+    html += '</table>';
+    document.getElementById('employeeList').innerHTML = html;
+}
+
+function addOrUpdateEmployee() {
+    const id = document.getElementById('employeeId').value;
+    const name = document.getElementById('name').value.trim();
+    const position = document.getElementById('position').value.trim();
+    const salary = parseFloat(document.getElementById('salary').value);
+    const department = document.getElementById('department').value.trim();
+    const availability = document.getElementById('availability').value;
+
+    if(!name || !position || isNaN(salary) || !department) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    if(id) {
+        const emp = employees.find(e => e.id == id);
+        emp.name = name;
+        emp.position = position;
+        emp.salary = salary;
+        emp.department = department;
+        emp.availability = availability;
+    } else {
+        employees.push({id: currentId++, name, position, salary, department, availability});
+    }
+
+    clearInputs();
+    displayEmployees();
+}
+
+function clearInputs() {
+    document.getElementById('employeeId').value = '';
+    document.getElementById('name').value = '';
+    document.getElementById('position').value = '';
+    document.getElementById('salary').value = '';
+    document.getElementById('department').value = '';
+    document.getElementById('availability').value = 'available';
+}
+
+function removeEmployee(id) {
+    employees = employees.filter(emp => emp.id !== id);
+    displayEmployees();
+}
+
+function editEmployee(id) {
+    const emp = employees.find(e => e.id === id);
+    document.getElementById('employeeId').value = emp.id;
+    document.getElementById('name').value = emp.name;
+    document.getElementById('position').value = emp.position;
+    document.getElementById('salary').value = emp.salary;
+    document.getElementById('department').value = emp.department;
+    document.getElementById('availability').value = emp.availability;
+}
+
+function searchEmployee() {
+    const term = document.getElementById('search').value.toLowerCase();
+    const filtered = employees.filter(emp => emp.name.toLowerCase().includes(term));
+    displayEmployees(filtered);
+}
+
+function calculateTotalSalary() {
+    const total = employees.filter(e => e.availability === "available").reduce((sum, e) => sum + e.salary, 0);
+    document.getElementById('report').innerHTML = `<p><strong>Total Salary of Active Employees: ₹${total}</strong></p>`;
+}
+
+function generateDepartmentReport() {
+    const report = {};
+    employees.forEach(emp => {
+        if(!report[emp.department]) report[emp.department] = 0;
+        report[emp.department] += emp.salary;
+    });
+    let html = '<h3>Department-wise Salary Report</h3><ul>';
+    for(const dept in report) {
+        html += `<li>${dept}: ₹${report[dept]}</li>`;
+    }
+    html += '</ul>';
+    document.getElementById('report').innerHTML = html;
+}
+
+function sortBySalary(asc = true) {
+    employees.sort((a, b) => asc ? a.salary - b.salary : b.salary - a.salary);
+    displayEmployees();
+}
+
+function toggleAvailability(id) {
+    const emp = employees.find(e => e.id === id);
+    emp.availability = emp.availability === "available" ? "unavailable" : "available";
+    displayEmployees();
+}
+</script>
+
+</body>
+</html>
