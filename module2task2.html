@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array Creation and Basic Operations</title>
+    <style>
+        body {
+            background: #f4faff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #00305c;
+        }
+        .box {
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 18px;
+            box-shadow: 0 0 8px #b8c7d9;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Array Creation and Basic Operations</h2>
+    <div class="box" id="numberArray"></div>
+    <div class="box" id="stringArray"></div>
+    <div class="box" id="arrayOps"></div>
+
+    <script>
+        console.log("=== Array Creation ===");
+
+        const numbers = [10, 20, 30, 40, 50];
+        const fruits = ["Apple", "Banana", "Mango", "Orange"];
+
+        console.log("Numbers:", numbers);
+        console.log("Fruits:", fruits);
+
+        document.getElementById("numberArray").innerHTML = `
+            <strong>Number Array:</strong> [${numbers.join(", ")}]
+        `;
+        document.getElementById("stringArray").innerHTML = `
+            <strong>String Array:</strong> [${fruits.join(", ")}]
+        `;
+
+        console.log("=== Access and Modify Elements ===");
+
+        let secondNum = numbers[1];
+        let secondFruit = fruits[1];
+        console.log("Second Number:", secondNum);
+        console.log("Second Fruit:", secondFruit);
+
+        numbers[2] = 35;
+        fruits[0] = "Grapes";
+        console.log("Modified Numbers:", numbers);
+        console.log("Modified Fruits:", fruits);
+
+        console.log("=== Array Length ===");
+        console.log("Numbers Length:", numbers.length);
+        console.log("Fruits Length:", fruits.length);
+
+        console.log("=== Adding & Removing Elements ===");
+
+        numbers.push(60);
+        fruits.push("Kiwi");
+        console.log("After push:", numbers, fruits);
+
+        numbers.pop();
+        fruits.pop();
+        console.log("After pop:", numbers, fruits);
+
+        numbers.unshift(5);
+        fruits.unshift("Pineapple");
+        console.log("After unshift:", numbers, fruits);
+
+        numbers.shift();
+        fruits.shift();
+        console.log("After shift:", numbers, fruits);
+
+        document.getElementById("arrayOps").innerHTML = `
+            <strong>Array Operations:</strong><br>
+            Accessed → Number: ${secondNum}, Fruit: ${secondFruit}<br>
+            Modified Arrays → Numbers: [${numbers.join(", ")}], Fruits: [${fruits.join(", ")}]<br>
+            Lengths → Numbers: ${numbers.length}, Fruits: ${fruits.length}<br>
+            After Push/Pop/Shift/Unshift →<br>
+            Numbers: [${numbers.join(", ")}]<br>
+            Fruits: [${fruits.join(", ")}]
+        `;
+    </script>
+
+</body>
+</html>

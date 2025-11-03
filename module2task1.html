@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Math & String Built-in Functions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4faff;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #002b5c;
+        }
+        .box {
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 18px;
+            box-shadow: 0 0 10px #cdd6e3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>JavaScript Math & String Built-in Function Examples</h2>
+    <div class="box" id="mathBox"></div>
+    <div class="box" id="stringBox"></div>
+
+    <script>
+        console.log("=== Math Built-in Functions ===");
+
+        const randomNum = Math.random() * 100;
+        const roundedDown = Math.floor(randomNum);
+        const roundedUp = Math.ceil(randomNum);
+        const minVal = Math.min(5, 8, 2, 10);
+        const maxVal = Math.max(5, 8, 2, 10);
+
+        console.log("Random Number:", randomNum);
+        console.log("Rounded Down:", roundedDown);
+        console.log("Rounded Up:", roundedUp);
+        console.log("Min Value:", minVal);
+        console.log("Max Value:", maxVal);
+
+        document.getElementById("mathBox").innerHTML = `
+            <strong>Math Functions:</strong><br>
+            Random: ${randomNum.toFixed(2)}<br>
+            Rounded Down: ${roundedDown}<br>
+            Rounded Up: ${roundedUp}<br>
+            Min: ${minVal}, Max: ${maxVal}
+        `;
+
+        console.log("=== String Built-in Functions ===");
+
+        const text = "JavaScript is Amazing!";
+        const upper = text.toUpperCase();
+        const lower = text.toLowerCase();
+        const sliced = text.slice(0, 10);
+        const includesWord = text.includes("Amazing");
+        const replaced = text.replace("Amazing", "Powerful");
+
+        console.log("Original:", text);
+        console.log("Uppercase:", upper);
+        console.log("Lowercase:", lower);
+        console.log("Substring:", sliced);
+        console.log("Includes 'Amazing':", includesWord);
+        console.log("Replaced:", replaced);
+
+        document.getElementById("stringBox").innerHTML = `
+            <strong>String Functions:</strong><br>
+            Original: ${text}<br>
+            Uppercase: ${upper}<br>
+            Lowercase: ${lower}<br>
+            Substring: ${sliced}<br>
+            Includes 'Amazing': ${includesWord}<br>
+            Replaced: ${replaced}
+        `;
+    </script>
+
+</body>
+</html>

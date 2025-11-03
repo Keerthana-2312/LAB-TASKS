@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array Iteration and Loops</title>
+  <style>
+    body {
+      background: #eef9f0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #005c28;
+    }
+    .box {
+      background: #ffffff;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      font-size: 18px;
+      box-shadow: 0px 0px 8px #c9e5d2;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Array Iteration and Loop Examples</h2>
+
+  <div class="box" id="forEachOutput"></div>
+  <div class="box" id="mapOutput"></div>
+  <div class="box" id="forInOutput"></div>
+  <div class="box" id="forOfOutput"></div>
+
+  <script>
+    console.log("=== Array Iteration and Loops ===");
+
+    const numbers = [2, 4, 6, 8, 10];
+    console.log("Original Array:", numbers);
+
+    
+    let forEachResult = "";
+    numbers.forEach((num, index) => {
+      console.log(`Index ${index}: Value ${num}`);
+      forEachResult += `Index ${index}: ${num}<br>`;
+    });
+    document.getElementById("forEachOutput").innerHTML = `
+      <strong>forEach() Output:</strong><br>${forEachResult}
+    `;
+
+    
+    const squaredNumbers = numbers.map(num => num * num);
+    console.log("map() result (squared):", squaredNumbers);
+    document.getElementById("mapOutput").innerHTML = `
+      <strong>map() Output (Squared Values):</strong><br>[${squaredNumbers.join(", ")}]
+    `;
+
+    
+    let forInResult = "";
+    for (let index in numbers) {
+      console.log(`for-in index: ${index}, value: ${numbers[index]}`);
+      forInResult += `Index ${index}: ${numbers[index]}<br>`;
+    }
+    document.getElementById("forInOutput").innerHTML = `
+      <strong>for-in Loop (Indexes):</strong><br>${forInResult}
+    `;
+
+    
+    let forOfResult = "";
+    for (let value of numbers) {
+      console.log(`for-of value: ${value}`);
+      forOfResult += `${value} `;
+    }
+    document.getElementById("forOfOutput").innerHTML = `
+      <strong>for-of Loop (Values):</strong><br>${forOfResult}
+    `;
+
+    console.log(`
+    --- Comparison ---
+    forEach(): executes a callback for each element, cannot break early
+    map(): creates a new array from the results of the callback
+    for-in: iterates over keys/indexes
+    for-of: iterates directly over values
+    `);
+  </script>
+
+</body>
+</html>
