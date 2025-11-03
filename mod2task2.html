@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Expressions & Arrow Functions</title>
+    <style>
+        body {
+            background: #eef6ff;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            text-align: center;
+            color: #00305c;
+        }
+        .box {
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 18px;
+            box-shadow: 0 0 8px #b8c7d9;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>JavaScript Function Expressions & Arrow Functions</h2>
+    <div class="box" id="funcExpr"></div>
+    <div class="box" id="arrowFunc"></div>
+    <div class="box" id="arrowShort"></div>
+    <div class="box" id="thisExample"></div>
+
+    <script>
+        console.log("=== Function Expression ===");
+
+        
+        const multiply = function(a, b) {
+            return a * b;
+        };
+
+        let result1 = multiply(6, 4);
+        console.log("Multiply:", result1);
+
+        document.getElementById("funcExpr").innerHTML = 
+            `<strong>Function Expression Result:</strong> 6 × 4 = ${result1}`;
+
+        console.log("=== Arrow Function ===");
+
+        
+        const multiplyArrow = (a, b) => {
+            return a * b;
+        };
+
+        let result2 = multiplyArrow(7, 3);
+        console.log("Arrow Multiply:", result2);
+
+        document.getElementById("arrowFunc").innerHTML = 
+            `<strong>Arrow Function Result:</strong> 7 × 3 = ${result2}`;
+
+        console.log("=== Short Arrow Function (Implicit Return) ===");
+
+        
+        const add = (x, y) => x + y;
+        let result3 = add(10, 20);
+        console.log("Short Arrow Add:", result3);
+
+        document.getElementById("arrowShort").innerHTML = 
+            `<strong>Short Arrow Function:</strong> 10 + 20 = ${result3}`;
+
+        console.log("=== This Behavior Difference ===");
+
+        
+        const demoObj = {
+            value: 100,
+            showValueTraditional: function() {
+                return this.value; 
+            },
+            showValueArrow: () => {
+                return this.value; 
+            }
+        };
+
+        let traditionalThis = demoObj.showValueTraditional(); 
+        let arrowThis = demoObj.showValueArrow(); 
+
+        console.log("Traditional this:", traditionalThis);
+        console.log("Arrow this:", arrowThis);
+
+        document.getElementById("thisExample").innerHTML = `
+            <strong>This Behavior:</strong><br>
+            Traditional Function → this.value = ${traditionalThis}<br>
+            Arrow Function → this.value = ${arrowThis} (undefined / window value)
+        `;
+    </script>
+
+</body>
+</html>

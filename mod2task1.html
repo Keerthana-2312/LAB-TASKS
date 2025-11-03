@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Functions Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4faff;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #002b5c;
+        }
+        .box {
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 18px;
+            box-shadow: 0 0 10px #cdd6e3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>JavaScript Function Examples</h2>
+    <div class="box" id="fixedFunc"></div>
+    <div class="box" id="argumentFunc"></div>
+    <div class="box" id="restFunc"></div>
+
+    <script>
+        console.log("=== Fixed Parameter Function ===");
+
+        function addNumbers(a, b) {
+            return a + b;
+        }
+
+        let result1 = addNumbers(10, 20);
+        console.log("Addition Result:", result1);
+
+        document.getElementById("fixedFunc").innerHTML = 
+            `<strong>Fixed Function:</strong> 10 + 20 = ${result1}`;
+
+        console.log("=== Function using arguments Object ===");
+
+        function multiplyAll() {
+            let product = 1;
+            for (let i = 0; i < arguments.length; i++) {
+                product *= arguments[i];
+            }
+            return product;
+        }
+
+        let result2 = multiplyAll(2, 3, 4);
+        console.log("Multiplication Result:", result2);
+
+        document.getElementById("argumentFunc").innerHTML = 
+            `<strong>Arguments Function:</strong> 2 × 3 × 4 = ${result2}`;
+
+        console.log("=== Rest Operator Function ===");
+
+        function sumAll(...numbers) {
+            let sum = 0;
+            for (let n of numbers) {
+                sum += n;
+            }
+            return sum;
+        }
+
+        let result3 = sumAll(5, 10, 15, 20);
+        console.log("Sum Result:", result3);
+
+        document.getElementById("restFunc").innerHTML = 
+            `<strong>Rest Operator Function:</strong> 5 + 10 + 15 + 20 = ${result3}`;
+    </script>
+
+</body>
+</html>

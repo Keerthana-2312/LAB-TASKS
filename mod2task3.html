@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Callback Functions & Scopes</title>
+    <style>
+        body {
+            background: #fff6e5;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #8b4a00;
+        }
+        .box {
+            background: #ffffff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px #e0c9a8;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Callback Functions & JavaScript Scopes</h2>
+
+<div class="box" id="callbackOutput"></div>
+<div class="box" id="scopeOutput"></div>
+
+<script>
+    console.log("=== CALLBACK FUNCTIONS ===");
+
+    function greet(name) {
+        return `Hello, ${name}! 👋`;
+    }
+
+    function displayMessage(message, callback) {
+        let result = callback(message);
+        return result;
+    }
+
+    let output1 = displayMessage("Keerthana", greet);
+    console.log(output1);
+
+    document.getElementById("callbackOutput").innerHTML =
+        `<strong>Callback Result:</strong> ${output1}`;
+
+    function doTask(task, callback) {
+        console.log(`Doing task: ${task}`);
+        let displayed = `Task Completed ✅: ${task}`;
+        return callback(displayed);
+    }
+
+    const taskMessage = doTask("Learning JavaScript Callbacks", function(msg) {
+        console.log(msg);
+        return msg;
+    });
+
+    document.getElementById("callbackOutput").innerHTML +=
+        `<br><strong>After Completion:</strong> ${taskMessage}`;
+
+    console.log("=== SCOPE DEMONSTRATION ===");
+
+    var globalVar = "I am Global (var)";
+    let globalLet = "I am Global (let)";
+    const globalConst = "I am Global (const)";
+
+    function showScope() {
+        var localVar = "Local var inside function";
+        let localLet = "Local let inside function";
+        const localConst = "Local const inside function";
+
+        console.log(localVar);
+        console.log(localLet);
+        console.log(localConst);
+
+        let text = `
+            <strong>Global Scope Values:</strong><br>
+            ${globalVar}<br>
+            ${globalLet}<br>
+            ${globalConst}<br><br>
+
+            <strong>Local Scope Values (Inside Function):</strong><br>
+            ${localVar}<br>
+            ${localLet}<br>
+            ${localConst}<br><br>
+        `;
+
+        if (true) {
+            var blockVar = "var → Block scope? ❌ (Accessible outside)";
+            let blockLet = "let → Block scoped ✅";
+            const blockConst = "const → Block scoped ✅";
+
+            console.log(blockVar);
+            console.log(blockLet);
+            console.log(blockConst);
+
+            text += `
+                <strong>Inside Block:</strong><br>
+                ${blockVar}<br>
+                ${blockLet}<br>
+                ${blockConst}<br><br>
+            `;
+        }
+
+        text += `<strong>Outside Block:</strong><br>${blockVar} ✅`;
+        return text;
+    }
+
+    let scopeText = showScope();
+    document.getElementById("scopeOutput").innerHTML = scopeText;
+</script>
+
+</body>
+</html>
+
+
