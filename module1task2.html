@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Data Types & Type Conversion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef6ff;
+            padding: 20px;
+        }
+        h2 {
+            color: #003366;
+        }
+        .box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 18px;
+            box-shadow: 0 0 10px #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Data Types & Type Conversion Demo</h2>
+    <div class="box" id="output"></div>
+
+    <script>
+        
+        let num = 25;                 
+        let str = "100";              
+        let isStudent = true;         
+        let emptyValue = null;        
+        let notDefined;               
+        let person = {name: "Sabi"};  
+        let uniqueValue = Symbol("id"); 
+
+        
+        console.log(typeof num);
+        console.log(typeof str);
+        console.log(typeof isStudent);
+        console.log(typeof emptyValue); 
+        console.log(typeof notDefined);
+        console.log(typeof person);
+        console.log(typeof uniqueValue);
+
+      
+        let convertedNumber = Number(str); 
+        let convertedString = String(num); 
+        let implicitConversion = "10" * 2; 
+
+        console.log("Converted Number:", convertedNumber);
+        console.log("Converted String:", convertedString);
+        console.log("Implicit Conversion:", implicitConversion);
+
+        
+        document.getElementById("output").innerHTML = `
+            <strong>Original Values:</strong><br>
+            Number: ${num} (${typeof num})<br>
+            String: "${str}" (${typeof str})<br>
+            Boolean: ${isStudent} (${typeof isStudent})<br>
+            Null: ${emptyValue} (type: object)<br>
+            Undefined: ${notDefined} (${typeof notDefined})<br>
+            Object: ${JSON.stringify(person)} (${typeof person})<br>
+            Symbol: ${uniqueValue.toString()} (${typeof uniqueValue})<br><br>
+
+            <strong>Type Conversion:</strong><br>
+            String("100") → Number: ${convertedNumber} (${typeof convertedNumber})<br>
+            Number(25) → String: "${convertedString}" (${typeof convertedString})<br>
+            Implicit "10" * 2 → ${implicitConversion} (${typeof implicitConversion})
+        `;
+    </script>
+
+</body>
+</html>
