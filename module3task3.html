@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object Destructuring & Spread</title>
+    <style>
+        body {
+            background: #f3eaff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            font-size: 18px;
+        }
+        h2 {
+            text-align: center;
+            color: #6200a8;
+        }
+        .box {
+            background: white;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #c7b2ff;
+        }
+        strong {
+            color: #6200a8;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Object Destructuring & Spread Operator</h2>
+
+<div class="box" id="destructureOutput"></div>
+<div class="box" id="defaultOutput"></div>
+<div class="box" id="nestedOutput"></div>
+<div class="box" id="spreadOutput"></div>
+
+<script>
+    
+    const person = {
+        name: "Monica",
+        age: 30,
+        city: "Chennai"
+    };
+
+   
+    const { name, age, city } = person;
+    document.getElementById("destructureOutput").innerHTML = `
+        <strong>Basic Destructuring</strong><br>
+        Name: ${name}<br>
+        Age: ${age}<br>
+        City: ${city}
+    `;
+
+   
+    const { country = "India" } = person;
+    document.getElementById("defaultOutput").innerHTML = `
+        <strong>Destructuring with Default Value</strong><br>
+        Country: ${country} (default)
+    `;
+
+   
+    const employee = {
+        id: 101,
+        department: {
+            dName: "HR",
+            floor: 3
+        }
+    };
+    const { department: { dName, floor } } = employee;
+    document.getElementById("nestedOutput").innerHTML = `
+        <strong>Nested Object Destructuring</strong><br>
+        Department: ${dName}<br>
+        Floor: ${floor}
+    `;
+
+ 
+    const personClone = { ...person };
+    const extraDetails = { country: "India", email: "monica@example.com" };
+    const mergedPerson = { ...person, ...extraDetails };
+
+    document.getElementById("spreadOutput").innerHTML = `
+        <strong>Spread Operator (...)</strong><br>
+        Cloned Object: ${JSON.stringify(personClone)}<br>
+        Merged Object: ${JSON.stringify(mergedPerson)}
+    `;
+</script>
+
+</body>
+</html>
