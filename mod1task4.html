@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conditional Statements in JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f9ff;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #003366;
+        }
+        .box {
+            background: #fff;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+            font-size: 18px;
+            box-shadow: 0 0 10px #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>JavaScript Conditional Statements</h2>
+
+    <div class="box" id="simpleIf"></div>
+    <div class="box" id="ifElse"></div>
+    <div class="box" id="elseIf"></div>
+    <div class="box" id="switchOutput"></div>
+
+    <script>
+        let marks = 80;
+        let age = 17;
+        let temperature = 30;
+        let dayNumber = 5;
+
+        console.log("=== Simple If ===");
+        
+        if (marks > 50) {
+            console.log("Passed in Exam");
+            document.getElementById("simpleIf").innerHTML = 
+                "<strong>Simple If:</strong> Passed in Exam ✅";
+        }
+
+        console.log("=== If-Else ===");
+    
+        if (age >= 18) {
+            console.log("You are eligible to vote");
+            document.getElementById("ifElse").innerHTML = 
+                "<strong>If-Else:</strong> You are eligible to vote 🗳️";
+        } else {
+            console.log("You are not eligible to vote");
+            document.getElementById("ifElse").innerHTML = 
+                "<strong>If-Else:</strong> You are not eligible to vote ❌";
+        }
+
+        console.log("=== Else-If ===");
+    
+        let weatherMsg = "";
+        if (temperature > 35) {
+            weatherMsg = "It's very Hot ☀️";
+        } else if (temperature >= 25) {
+            weatherMsg = "It's Warm 😊";
+        } else if (temperature >= 15) {
+            weatherMsg = "Weather is Cool 🍃";
+        } else {
+            weatherMsg = "It's Cold ❄️";
+        }
+        console.log(weatherMsg);
+        document.getElementById("elseIf").innerHTML = 
+            "<strong>Else-If:</strong> " + weatherMsg;
+
+        console.log("=== Switch Case ===");
+        
+        let day;
+        switch(dayNumber) {
+            case 1: day = "Monday"; break;
+            case 2: day = "Tuesday"; break;
+            case 3: day = "Wednesday"; break;
+            case 4: day = "Thursday"; break;
+            case 5: day = "Friday"; break;
+            case 6: day = "Saturday"; break;
+            case 7: day = "Sunday"; break;
+            default: day = "Invalid Day Number";
+        }
+        console.log(day);
+        document.getElementById("switchOutput").innerHTML = 
+            "<strong>Switch:</strong> Selected Day - " + day + " 📅";
+    </script>
+
+</body>
+</html>
