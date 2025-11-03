@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Objects & Methods in JavaScript</title>
+    <style>
+        body {
+            background: #e7f4ff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            font-size: 18px;
+        }
+        h2 {
+            text-align: center;
+            color: #005c99;
+        }
+        .box {
+            background: white;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #b9d9ff;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Working with Objects and Methods in JavaScript</h2>
+
+<div class="box" id="studentOutput"></div>
+<div class="box" id="carOutput"></div>
+<div class="box" id="modifyOutput"></div>
+
+<script>
+    let student = {
+        name: "Keerthana",
+        age: 18,
+        course: "Bsc.cs",
+        displayInfo: function() {
+            return `Student: ${this.name}, Age: ${this.age}, Course: ${this.course}`;
+        }
+    };
+
+    let car = {
+        brand: "Toyota",
+        model: "Innova",
+        year: 2022,
+        getDetails() {
+            return `${this.brand} ${this.model} - ${this.year}`;
+        }
+    };
+
+    document.getElementById("studentOutput").innerHTML = `
+        <strong>Student Object</strong><br>
+        ${student.displayInfo()}
+    `;
+
+    document.getElementById("carOutput").innerHTML = `
+        <strong>Car Object</strong><br>
+        ${car.getDetails()}
+    `;
+
+    student.age = 22;
+    student.city = "Chennai";
+
+    document.getElementById("modifyOutput").innerHTML = `
+        <strong>Modified Student Object</strong><br>
+        Name: ${student.name}<br>
+        Age: ${student.age} (updated)<br>
+        Course: ${student.course}<br>
+        City: ${student.city} (new property added)
+    `;
+</script>
+
+</body>
+</html>

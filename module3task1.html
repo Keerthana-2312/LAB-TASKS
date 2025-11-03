@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Array Methods</title>
+    <style>
+        body {
+            background: #fff8e8;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            font-size: 18px;
+        }
+        h2 {
+            text-align: center;
+            color: #a06500;
+        }
+        .box {
+            background: white;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #e8d3ad;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Advanced Array Methods in JavaScript</h2>
+
+<div class="box" id="filterOutput"></div>
+<div class="box" id="reduceOutput"></div>
+<div class="box" id="sliceOutput"></div>
+<div class="box" id="spliceOutput"></div>
+<div class="box" id="spreadOutput"></div>
+
+<script>
+    console.log("=== ADVANCED ARRAY METHODS ===");
+
+    let numbers = [5, 12, 8, 20, 15, 3];
+    let fruits = ["Apple", "Banana", "Orange", "Grapes"];
+
+
+
+    let filtered = numbers.filter(num => num > 10);
+    console.log("Filtered (>10):", filtered);
+    document.getElementById("filterOutput").innerHTML = `
+        <strong>filter() - Numbers > 10</strong><br>
+        Original: [${numbers}]<br>
+        Filtered: [${filtered}]
+    `;
+
+
+    
+    let sum = numbers.reduce((total, num) => total + num, 0);
+    let product = numbers.reduce((total, num) => total * num, 1);
+    console.log("Sum:", sum);
+    console.log("Product:", product);
+
+    document.getElementById("reduceOutput").innerHTML = `
+        <strong>reduce() - Sum & Product</strong><br>
+        Array: [${numbers}]<br>
+        Sum: ${sum}<br>
+        Product: ${product}
+    `;
+
+
+    
+    let sliced = fruits.slice(1, 3); 
+    console.log("Slice(1,3):", sliced);
+
+    document.getElementById("sliceOutput").innerHTML = `
+        <strong>slice() - Extract Part</strong><br>
+        Original: [${fruits}]<br>
+        Sliced (1-3): [${sliced}]
+    `;
+
+
+    
+    let spliceArray = [...fruits]; 
+    let removed = spliceArray.splice(2, 1, "Mango", "Kiwi"); 
+    console.log("Splice Removed:", removed);
+    console.log("New Array:", spliceArray);
+
+    document.getElementById("spliceOutput").innerHTML = `
+        <strong>splice() - Remove & Add</strong><br>
+        Removed: [${removed}]<br>
+        Updated Array: [${spliceArray}]
+    `;
+
+
+    
+    let clonedNumbers = [...numbers]; 
+    let mergedArray = [...numbers, ...fruits]; 
+    console.log("Cloned Numbers:", clonedNumbers);
+    console.log("Merged Array:", mergedArray);
+
+    document.getElementById("spreadOutput").innerHTML = `
+        <strong>Spread Operator (...) - Clone & Merge</strong><br>
+        Cloned Numbers: [${clonedNumbers}]<br>
+        Merged Array: [${mergedArray}]
+    `;
+</script>
+
+</body>
+</html>
