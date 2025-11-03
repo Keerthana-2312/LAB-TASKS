@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function context</title>
+    <style>
+        body {
+            background: #fff5e6;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            font-size: 18px;
+        }
+        h2 {
+            text-align: center;
+            color: #d46b08;
+        }
+        .box {
+            background: #ffffff;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ffd59b;
+        }
+        strong {
+            color: #d46b08;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Function Context</h2>
+
+<div class="box" id="callOutput"></div>
+<div class="box" id="applyOutput"></div>
+<div class="box" id="bindOutput"></div>
+<div class="box" id="comparisonOutput"></div>
+
+<script>
+    const person1 = { name: "keerthana" };
+    const person2 = { name: "sadhana" };
+
+    function greet(greeting, location) {
+        return `${greeting}, ${this.name}! Welcome to ${location}.`;
+    }
+
+    const callResult = greet.call(person1, "Hello", "Chennai");
+    document.getElementById("callOutput").innerHTML = `<strong>Using call()</strong><br>${callResult}`;
+
+    const applyResult = greet.apply(person2, ["Hi", "Bangalore"]);
+    document.getElementById("applyOutput").innerHTML = `<strong>Using apply()</strong><br>${applyResult}`;
+
+    const boundGreet = greet.bind(person1, "Hey", "Mumbai");
+    const bindResult = boundGreet();
+    document.getElementById("bindOutput").innerHTML = `<strong>Using bind()</strong><br>${bindResult}`;
+
+    const comparisonHtml = `
+        <strong>Comparison</strong><br>
+        🔸 <b>call()</b> → Calls function immediately, parameters individually.<br>
+        🔸 <b>apply()</b> → Calls function immediately, parameters as array.<br>
+        🔸 <b>bind()</b> → Returns a new function with fixed context (not executed immediately).<br>
+    `;
+    document.getElementById("comparisonOutput").innerHTML = comparisonHtml;
+</script>
+
+</body>
+</html>

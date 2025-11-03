@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Complex Data & Parameter Handling</title>
+    <style>
+        body {
+            background: #e1f4ff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            font-size: 18px;
+        }
+        h2 {
+            text-align: center;
+            color: #005a9c;
+        }
+        .box {
+            background: #ffffff;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #9ed5ff;
+        }
+        strong {
+            color: #005a9c;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Complex Data & Parameter Handling in JavaScript</h2>
+
+<div class="box" id="objectArrayOutput"></div>
+<div class="box" id="restParamOutput"></div>
+<div class="box" id="spreadOutput"></div>
+<div class="box" id="destructFuncOutput"></div>
+
+<script>
+    const users = [
+        { id: 1, name: "Alice", age: 25, address: { city: "Chennai", zip: 600001 } },
+        { id: 2, name: "Bob", age: 30, address: { city: "Bangalore", zip: 560001 } },
+        { id: 3, name: "Charlie", age: 28, address: { city: "Mumbai", zip: 400001 } }
+    ];
+
+    let userHtml = "<strong>Array of Objects</strong><br>";
+    users.forEach(u => {
+        userHtml += `${u.name} - Age: ${u.age}, City: ${u.address.city}, ZIP: ${u.address.zip}<br>`;
+    });
+    document.getElementById("objectArrayOutput").innerHTML = userHtml;
+
+    function sumAges(...ages) {
+        return ages.reduce((total, age) => total + age, 0);
+    }
+    const totalAges = sumAges(25, 30, 28, 22);
+    document.getElementById("restParamOutput").innerHTML = `
+        <strong>Rest Parameters</strong><br>
+        Sum of Ages: ${totalAges}
+    `;
+
+    const developers = ["Alice", "Bob"];
+    const designers = ["Charlie", "David"];
+    const allTeam = [...developers, ...designers];
+    const clonedUser = { ...users[0], role: "Admin" };
+    document.getElementById("spreadOutput").innerHTML = `
+        <strong>Spread Operator</strong><br>
+        Team Members: ${allTeam.join(", ")}<br>
+        Cloned User: ${clonedUser.name}, Role: ${clonedUser.role}
+    `;
+
+    function displayUser({ name, age, address: { city } }) {
+        return `User: ${name}, Age: ${age}, City: ${city}`;
+    }
+    const userInfo = displayUser(users[1]);
+    document.getElementById("destructFuncOutput").innerHTML = `
+        <strong>Parameter Destructuring in Function</strong><br>
+        ${userInfo}
+    `;
+</script>
+
+</body>
+</html>

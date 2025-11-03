@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Destructuring, Notation & Iteration</title>
+    <style>
+        body {
+            background: #e1f4ff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            font-size: 18px;
+        }
+        h2 {
+            text-align: center;
+            color: #005a9c;
+        }
+        .box {
+            background: #ffffff;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #9ed5ff;
+        }
+        strong {
+            color: #005a9c;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Destructuring, Notation & Iteration in JavaScript</h2>
+
+<div class="box" id="objectArrayOutput"></div>
+<div class="box" id="destructOutput"></div>
+<div class="box" id="iterationOutput"></div>
+<div class="box" id="notationOutput"></div>
+
+<script>
+    const products = [
+        { id: 1, name: "Laptop", price: 55000, stock: { qty: 12, location: "A1" } },
+        { id: 2, name: "Mobile", price: 25000, stock: { qty: 30, location: "B3" } },
+        { id: 3, name: "Tablet", price: 15000, stock: { qty: 20, location: "C2" } }
+    ];
+
+    let objectArrayHtml = "<strong>Array of Objects</strong><br>";
+    products.forEach(p => {
+        objectArrayHtml += `${p.name} - Price: ₹${p.price}, Qty: ${p.stock.qty}, Location: ${p.stock.location}<br>`;
+    });
+    document.getElementById("objectArrayOutput").innerHTML = objectArrayHtml;
+
+    const { name: firstProductName, price: firstProductPrice } = products[0];
+    document.getElementById("destructOutput").innerHTML = `
+        <strong>Destructuring Objects</strong><br>
+        Product: ${firstProductName}, Price: ₹${firstProductPrice}
+    `;
+
+    let iterationHtml = "<strong>Iterating through Product Keys & Values</strong><br>";
+    for (let key in products[0]) {
+        iterationHtml += `${key}: ${typeof products[0][key] === 'object' ? JSON.stringify(products[0][key]) : products[0][key]}<br>`;
+    }
+    document.getElementById("iterationOutput").innerHTML = iterationHtml;
+
+    const firstProduct = products[0];
+    const dotNotation = firstProduct.name;
+    const bracketNotation = firstProduct["price"];
+    document.getElementById("notationOutput").innerHTML = `
+        <strong>Dot vs Bracket Notation</strong><br>
+        Dot Notation (name): ${dotNotation}<br>
+        Bracket Notation (price): ₹${bracketNotation}
+    `;
+</script>
+
+</body>
+</html>
