@@ -1,0 +1,55 @@
+Module 1
+Task 1
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Variables Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f8ff;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h2 {
+            color: #003366;
+        }
+        p {
+            font-size: 18px;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>JavaScript: var, let & const Example</h2>
+    <p id="output"></p>
+
+    <script>
+        // Variable declarations
+        var name = "Sabarinathan";
+        let age = 21;
+        const country = "India";
+
+        // Displaying initial values in console
+        console.log("Name: " + name);
+        console.log("Age: " + age);
+        console.log("Country: " + country);
+
+        // Updating var and let (const cannot be changed)
+        name = "Sabi";
+        age = 22;
+
+        console.log("Updated Name: " + name);
+        console.log("Updated Age: " + age);
+
+        // Display on webpage
+        document.getElementById("output").innerHTML = 
+            "Updated Name: " + name + "<br>" +
+            "Updated Age: " + age + "<br>" +
+            "Country (constant): " + country;
+    </script>
+
+</body>
+</html>
