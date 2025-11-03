@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Break & Continue in JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf3ff;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #002b5c;
+        }
+        .box {
+            background: #fff;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+            font-size: 18px;
+            box-shadow: 0 0 8px #cbd3df;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Break and Continue Usage</h2>
+
+    <div class="box" id="breakOutput"></div>
+    <div class="box" id="continueOutput"></div>
+
+    <script>
+        console.log("=== Using break ===");
+
+        function isPrime(num) {
+            if (num <= 1) return false;
+            for (let i = 2; i < num; i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        let firstPrime = null;
+        for (let i = 2; i <= 20; i++) {
+            if (isPrime(i)) {
+                firstPrime = i;
+                console.log("First Prime Found:", firstPrime);
+                break;
+            }
+        }
+
+        document.getElementById("breakOutput").innerHTML =
+            `<strong>Break Example:</strong> First prime number between 2-20 is <b>${firstPrime}</b> ✅`;
+
+        console.log("=== Using continue ===");
+
+        let oddNumbers = "";
+        for (let j = 1; j <= 20; j++) {
+            if (j % 2 === 0) {
+                continue;
+            }
+            oddNumbers += j + " ";
+        }
+
+        console.log("Odd Numbers:", oddNumbers);
+
+        document.getElementById("continueOutput").innerHTML =
+            `<strong>Continue Example:</strong> Odd numbers (1-20): ${oddNumbers} 🔹`;
+    </script>
+
+</body>
+</html>
