@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Operators Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef6ff;
+            text-align: center;
+            margin-top: 40px;
+        }
+        h2 {
+            color: #003366;
+        }
+        pre {
+            text-align: left;
+            display: inline-block;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<h2>JavaScript Operators Example</h2>
+<pre id="output"></pre>
+
+<script>
+    let output = "";
+
+    // Arithmetic Operators
+    let a = 10, b = 3;
+    output += "Arithmetic Operators:\n";
+    output += `a + b = ${a + b}\n`;
+    output += `a - b = ${a - b}\n`;
+    output += `a * b = ${a * b}\n`;
+    output += `a / b = ${(a / b).toFixed(2)}\n`;
+    output += `a % b = ${a % b}\n\n`;
+
+    // Assignment Operators
+    let x = 5;
+    output += "Assignment Operators:\n";
+    x += 3; // same as x = x + 3
+    output += `x after x += 3: ${x}\n`;
+    x -= 2; // same as x = x - 2
+    output += `x after x -= 2: ${x}\n\n`;
+
+    // Relational Operators
+    let y = 10, z = "10";
+    output += "Relational Operators:\n";
+    output += `y == z: ${y == z}\n`;   // true (value only)
+    output += `y === z: ${y === z}\n`; // false (value + type)
+    output += `y != z: ${y != z}\n`;
+    output += `y !== z: ${y !== z}\n`;
+    output += `y > 5: ${y > 5}\n`;
+    output += `y <= 10: ${y <= 10}\n\n`;
+
+    // Logical Operators
+    let p = true, q = false;
+    output += "Logical Operators:\n";
+    output += `p && q = ${p && q}\n`;
+    output += `p || q = ${p || q}\n`;
+    output += `!p = ${!p}\n\n`;
+
+    // Conditional (Ternary) Operator
+    let age = 20;
+    let status = (age >= 18) ? "Adult" : "Minor";
+    output += "Conditional (Ternary) Operator:\n";
+    output += `Age: ${age} → ${status}\n\n`;
+
+    // Bitwise Operators
+    let m = 5, n = 3; // Binary: 5 = 0101, 3 = 0011
+    output += "Bitwise Operators:\n";
+    output += `m & n = ${m & n}\n`;   // AND
+    output += `m | n = ${m | n}\n`;   // OR
+    output += `m ^ n = ${m ^ n}\n`;   // XOR
+    output += `~m = ${~m}\n`;         // NOT
+    output += `m << 1 = ${m << 1}\n`; // Left shift
+    output += `m >> 1 = ${m >> 1}\n\n`; // Right shift
+
+    // Increment and Decrement Operators
+    let num = 10;
+    output += "Increment and Decrement Operators:\n";
+    output += `num++ = ${num++} (after increment: ${num})\n`;
+    output += `--num = ${--num}\n`;
+
+    // Display results on webpage
+    document.getElementById("output").textContent = output;
+
+    // Also log in console for verification
+    console.log(output);
+</script>
+
+</body>
+</html>
