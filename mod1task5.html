@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Function Expressions & Arrow Functions Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #333;
+      padding: 20px;
+    }
+    h1 {
+      color: #0056b3;
+    }
+    button {
+      margin: 8px 0;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 5px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .output {
+      margin-top: 15px;
+      padding: 10px;
+      background: #e9ecef;
+      border-radius: 5px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <h1>Function Expressions & Arrow Functions</h1>
+  <p>Click the buttons below to see different function styles in action:</p>
+
+  <button onclick="runExamples()">Run Examples</button>
+  <div class="output" id="output"></div>
+
+  <script>
+    const outputDiv = document.getElementById('output');
+    const log = (msg) => outputDiv.textContent += msg + '\n';
+
+    function runExamples() {
+      outputDiv.textContent = ''; // clear output
+
+      // 1️⃣ Traditional Function Declaration
+      function add(a, b) {
+        return a + b;
+      }
+      log('Traditional function: add(3, 4) = ' + add(3, 4));
+
+      // 2️⃣ Function Expression
+      const multiply = function(a, b) {
+        return a * b;
+      };
+      log('Function expression: multiply(3, 4) = ' + multiply(3, 4));
+
+      // 3️⃣ Arrow Function
+      const subtract = (a, b) => a - b;
+      log('Arrow function: subtract(10, 6) = ' + subtract(10, 6));
+
+      // 4️⃣ Arrow Function with multiple lines
+      const divide = (a, b) => {
+        if (b === 0) return 'Cannot divide by zero';
+        return a / b;
+      };
+      log('Arrow function (multi-line): divide(8, 2) = ' + divide(8, 2));
+
+      // 5️⃣ this behavior difference
+      const person = {
+        name: 'Alice',
+        regularFunction: function() {
+          log('Regular function this.name → ' + this.name);
+        },
+        arrowFunction: () => {
+          log('Arrow function this.name → ' + this.name);
+        }
+      };
+      log('\nthis behavior test:');
+      person.regularFunction();
+      person.arrowFunction();
+    }
+  </script>
+</body>
+</html>
